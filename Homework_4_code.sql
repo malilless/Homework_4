@@ -98,7 +98,7 @@ SELECT
     RIGHT(date, 4) AS release_year,
     COUNT(*) AS games_count
 FROM games_filtered g
-WHERE length(date) >= 4
+WHERE length(date) >= 4 AND release_year NOT LIKE '%г.%'
 GROUP BY release_year
 ORDER BY release_year DESC;
 
@@ -115,6 +115,7 @@ SELECT
     ROUND(AVG(price), 2) AS avg_price,
     COUNT(*) AS games_count
 FROM genre_data
+WHERE genre NOT LIKE '%ы%' AND genre NOT LIKE '%и%'
 GROUP BY genre
 ORDER BY avg_price DESC;
 
